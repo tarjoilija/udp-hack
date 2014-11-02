@@ -1,13 +1,8 @@
-CFLAGS=-Wall -m32
-CC=gcc
+CFLAGS=-std=c++11 -fPIC -m32
+CC=g++
 
-all: wrapper.so
-
-wrapper.o: wrapper.c
-	$(CC) $(CFLAGS) -c -fPIC wrapper.c
-
-wrapper.so: wrapper.o
-	$(CC) $(CFLAGS) -shared -rdynamic -o wrapper.so wrapper.o -ldl -llua -lm
+all:
+	$(CC) $(CFLAGS) -shared -o main.so main.cpp
 
 clean:
-	rm wrapper.o wrapper.so
+	rm main.so
